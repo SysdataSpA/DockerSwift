@@ -1,0 +1,31 @@
+PODS:
+  - Alamofire (4.8.1)
+  - Blabber (1.1.7):
+    - Blabber/Core (= 1.1.7)
+  - Blabber/Core (1.1.7)
+  - DockerSwift/Blabber (1.0.0):
+    - Blabber
+    - DockerSwift/Core
+  - DockerSwift/Core (1.0.0):
+    - Alamofire (~> 4)
+
+DEPENDENCIES:
+  - DockerSwift/Blabber (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Blabber
+
+EXTERNAL SOURCES:
+  DockerSwift:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Blabber: 056a8fe57474e9eafef7777e050ec316ed9c12a2
+  DockerSwift: 46dd3ee9c758a60d2f2a21971a888d2d6ded67cc
+
+PODFILE CHECKSUM: ec851d6cc010d9050a956f93859ab45537d0f4f8
+
+COCOAPODS: 1.6.1

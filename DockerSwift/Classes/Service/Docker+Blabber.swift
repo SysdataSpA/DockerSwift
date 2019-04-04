@@ -37,18 +37,18 @@ public func SDLogModuleVerbose(_ message: @autoclosure () -> String, module: Str
 #else
 public func SDLogError(_ message: @autoclosure () -> String, file: StaticString = #file , function: StaticString = #function, line: UInt = #line)
 {
-    print(message)
+    print(message())
 }
 public func SDLogInfo(_ message: @autoclosure () -> String, file: StaticString = #file , function: StaticString = #function, line: UInt = #line)
 {
-    print(message)
+    print(message())
 }
 public func SDLogWarning(_ message: @autoclosure () -> String, file: StaticString = #file , function: StaticString = #function, line: UInt = #line)
 {
-    print(message)
+    print(message())
 }
 public func SDLogVerbose(_ message: @autoclosure () -> String, file: StaticString = #file , function: StaticString = #function, line: UInt = #line)
 {
-    print(message)
+    print(message())
 }
 #endif
