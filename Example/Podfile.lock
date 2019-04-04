@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.8.1)
+  - Alamofire (4.8.2)
   - Blabber (1.1.7):
     - Blabber/Core (= 1.1.7)
   - Blabber/Core (1.1.7)
@@ -22,10 +22,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Blabber: 056a8fe57474e9eafef7777e050ec316ed9c12a2
   DockerSwift: 46dd3ee9c758a60d2f2a21971a888d2d6ded67cc
 
-PODFILE CHECKSUM: ec851d6cc010d9050a956f93859ab45537d0f4f8
+PODFILE CHECKSUM: 982ac3289867a65fd97bf7e6832e29a6a7f1bb05
 
 COCOAPODS: 1.6.1

@@ -59,11 +59,11 @@ extension DockerError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .generic: return "An error occured in service"
-        case .invalidURL(let service): return "The URL of the service is invalid.\n\tBase URL: \(service.baseUrl ?? "unknown")\n\tPath: \(service.path ?? "unknown")"
+        case .invalidURL(let service): return "The URL of the service is invalid.\n\tBase URL: \(service.baseUrl)\n\tPath: \(service.path)"
         case .encoding: return "Failed to encode Encodable object into data."
         case .parameterEncoding(let error): return "Failed to encode parameters for URLRequest. \(error.localizedDescription)"
         case .underlying(let error, _, _): return error.localizedDescription
-        case .missingResponse(let error, let errorCode): return "Missing response for connection Error. \(error.localizedDescription)"
+        case .missingResponse(let error, _): return "Missing response for connection Error. \(error.localizedDescription)"
         case .nilSuccessDemoFile: return "The success demo file is nil"
         case .nilFailureDemoFile: return "The failure demo file is nil"
         case .demoFileNotFound(let filename): return "The demo file \(filename) does not exist"

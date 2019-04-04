@@ -3,7 +3,7 @@ inhibit_all_warnings!
 
 platform :ios, '9.0'
 
-target 'Example' do
+target 'DockerSwift_Example' do
 
   pod 'DockerSwift/Blabber', :path => '../'
   
