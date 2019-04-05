@@ -35,6 +35,23 @@ public func SDLogModuleVerbose(_ message: @autoclosure () -> String, module: Str
     SDLogger.shared().log(with: .verbose, module: module,  file: String(describing: file), function: String(describing: function), line: line, message: message())
 }
 #else
+public func SDLogModuleError(_ message: @autoclosure () -> String, module: String, file: StaticString = #file , function: StaticString = #function, line: UInt = #line)
+{
+    print(message())
+}
+public func SDLogModuleInfo(_ message: @autoclosure () -> String, module: String,file: StaticString = #file , function: StaticString = #function, line: UInt = #line)
+{
+    print(message())
+}
+public func SDLogModuleWarning(_ message: @autoclosure () -> String, module: String,file: StaticString = #file , function: StaticString = #function, line: UInt = #line)
+{
+    print(message())
+}
+public func SDLogModuleVerbose(_ message: @autoclosure () -> String, module: String,file: StaticString = #file , function: StaticString = #function, line: UInt = #line)
+{
+    print(message())
+}
+
 public func SDLogError(_ message: @autoclosure () -> String, file: StaticString = #file , function: StaticString = #function, line: UInt = #line)
 {
     print(message())

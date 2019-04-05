@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target   = '9.0'
   s.swift_version           = '4.2'
   s.social_media_url        =  'https://www.facebook.com/sysdata.it/'
-  s.summary                 = 'DockerSwift handles in some easy steps all connections with your remote servers. Offers you some classes to call Web Services defining http method, request, response, .... and some classes to handle resources download.'
+  s.summary                 = 'DockerSwift handles in some easy steps all connections with your remote servers.'
   s.description             = <<-DESC
 DockerSwift handles in some easy steps all connections with your remote servers. Offers you some classes to call Web Services defining http method, request, response, .... and some classes to handle resources download.
                        DESC

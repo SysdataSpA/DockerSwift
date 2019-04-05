@@ -91,7 +91,7 @@ extension Request {
         
         // search for "/:" to find the start of a path parameter
         while let paramRange = findNextPathParamPlaceholderRange(in: composedUrl) {
-            let paramName = composedUrl.substring(with: composedUrl.index(after: paramRange.lowerBound)..<paramRange.upperBound)
+            let paramName = String(composedUrl[composedUrl.index(after: paramRange.lowerBound)..<paramRange.upperBound])
             let param = try findPathParam(with: paramName, in: pathParameters)
             composedUrl.replaceSubrange(paramRange, with: param)
         }
@@ -158,7 +158,7 @@ open class RequestPList: Request {
 extension Request {
     
     open override var description: String {
-        var string = "REQUEST URL: \(service.baseUrl)\(service.path)\nMETHOD:\(method.rawValue)\nHEADERS:\(headers ?? [:]))"
+        var string = "REQUEST URL: \(service.baseUrl)\(service.path)\nMETHOD:\(method.rawValue)\nHEADERS:\(headers))"
         if !urlParameters.isEmpty {
             string.append("\nPARAMETERS:\(urlParameters)")
         }
@@ -172,7 +172,7 @@ extension Request {
     }
     
     open var shortDescription: String {
-        var string = "REQUEST \(method.rawValue) at \(urlStringDescription)"
+        let string = "REQUEST \(method.rawValue) at \(urlStringDescription)"
         return string
     }
     

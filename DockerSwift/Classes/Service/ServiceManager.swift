@@ -71,7 +71,7 @@ open class ServiceManager { // : Singleton, Initializable
     private func upload<Resp: Responsable>(serviceCall: ServiceCall<Resp>, fileURL: URL) throws {
         let urlRequest = try serviceCall.request.buildUrlRequest()
         SDLogModuleInfo("🌍▶️ Service Manager: start upload \(serviceCall.request.shortDescription)", module: DockerServiceLogModuleName)
-        var request = serviceCall.service.sessionManager.upload(fileURL, with: urlRequest as URLRequestConvertible).validate()
+        let request = serviceCall.service.sessionManager.upload(fileURL, with: urlRequest as URLRequestConvertible).validate()
         serviceCall.request.internalRequest = request
         sendRequest(request: request, serviceCall: serviceCall)
     }
@@ -121,7 +121,7 @@ open class ServiceManager { // : Singleton, Initializable
     private func download<Resp: Responsable>(serviceCall: ServiceCall<Resp>, to destination: @escaping DownloadRequest.DownloadFileDestination) throws {
         let urlRequest = try serviceCall.request.buildUrlRequest()
         SDLogModuleInfo("🌍▶️ Service Manager: start download \(serviceCall.request.shortDescription)", module: DockerServiceLogModuleName)
-        var request = serviceCall.service.sessionManager.download(urlRequest as URLRequestConvertible, to: destination).validate()
+        let request = serviceCall.service.sessionManager.download(urlRequest as URLRequestConvertible, to: destination).validate()
         serviceCall.request.internalRequest = request
         sendRequest(request: request, serviceCall: serviceCall)
     }
@@ -166,7 +166,7 @@ open class ServiceManager { // : Singleton, Initializable
             default:
                 response = responseClass.init(statusCode: 0, data: data ?? Data(), request: serviceCall.request, response: urlResponse)
                 var httpErrorCode = NSURLErrorUnknown
-                if let err = error as? NSError {
+                if let err = error as NSError? {
                     httpErrorCode = err.code
                 }
                 responseError = DockerError.missingResponse(error ?? NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil), httpErrorCode)
@@ -181,7 +181,7 @@ open class ServiceManager { // : Singleton, Initializable
     
     open func completeServiceCall<Resp: Responsable>(_ serviceCall: ServiceCall<Resp>, with response: Resp, error: DockerError?) {
         if error != nil || (serviceCall.request.useDifferentResponseForErrors && serviceCall.request.httpErrorStatusCodeRange.contains(response.httpStatusCode)) {
-            SDLogModuleError("🌍‼️ Service completed service with error \(error)", module: DockerServiceLogModuleName)
+            SDLogModuleError("🌍‼️ Service completed service with error \(String(describing: error))", module: DockerServiceLogModuleName)
             
             // errori da mappare eventualmente
             SDLogModuleVerbose("🌍‼️ Trying to map error response", module: DockerServiceLogModuleName)
@@ -271,7 +271,7 @@ public protocol ServiceCallable {
     var completion: ServiceCompletion<Resp> { get }
     var progressBlock: ProgressHandler? { get }
     
-    weak var delegate: ServiceManager? { get }
+    var delegate: ServiceManager? { get }
     
     var isProcessing: Bool { get }
     

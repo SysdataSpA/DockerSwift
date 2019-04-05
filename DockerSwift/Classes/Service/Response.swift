@@ -72,7 +72,7 @@ open class Response<Val, ErrVal>: Responsable {
 //MARK: CustomStringConvertible
 extension Response {
     public var description: String {
-        var received = response != nil || request.sentInDemoMode
+        let received = response != nil || request.sentInDemoMode
         var d = ""
         if received {
             d.append("RESPONSE RECEIVED - URL= \(request.urlStringDescription)")
@@ -83,7 +83,6 @@ extension Response {
                 d.append("\nBODY=\n\(body)")
             }
         } else {
-            var urlString: String = ""
             d.append("RESPONSE NOT RECEIVED - URL= \(request.urlStringDescription)")
         }
         return d
@@ -150,7 +149,7 @@ open class DownloadResponse: Response<Any, Any> {
             if let localURL = localURL {
                 let data = try Data(contentsOf: localURL)
                 let value = UIImage(data: data)
-                result = .success(value)
+                result = .success(value as Any)
             } else {
                 SDLogModuleWarning("🌍⚠️ localURL not defined", module: DockerServiceLogModuleName)
             }

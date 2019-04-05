@@ -8,7 +8,9 @@
 
 import UIKit
 import DockerSwift
+#if BLABBER
 import Blabber
+#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        #if BLABBER
         SDLogger.shared().setup()
+        #endif
         return true
     }
 
