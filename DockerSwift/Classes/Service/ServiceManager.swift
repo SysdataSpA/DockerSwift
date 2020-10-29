@@ -155,14 +155,12 @@ open class ServiceManager { // : Singleton, Initializable
             let retrievedData = !(data?.isEmpty ?? true) ? data : nil
             let responseClass = Resp.self
             var responseError: DockerError?
-            switch (urlResponse, retrievedData, error) {
-            case let (.some(urlResponse), .some(retrievedData), .none):
-                response = responseClass.init(statusCode: urlResponse.statusCode, data: retrievedData, request: serviceCall.request, response: urlResponse)
-                break
-            case let (.some(urlResponse), .some(retrievedData), .some(error)):
-                response = responseClass.init(statusCode: urlResponse.statusCode, data: retrievedData, request: serviceCall.request, response: urlResponse)
+            switch (urlResponse, error) {
+            case let (.some(urlResponse), .none):
+                response = responseClass.init(statusCode: urlResponse.statusCode, data: retrievedData ?? Data(), request: serviceCall.request, response: urlResponse)
+            case let (.some(urlResponse), .some(error)):
+                response = responseClass.init(statusCode: urlResponse.statusCode, data: retrievedData ?? Data(), request: serviceCall.request, response: urlResponse)
                 responseError = DockerError.underlying(error, urlResponse, response.httpStatusCode)
-                break
             default:
                 response = responseClass.init(statusCode: 0, data: data ?? Data(), request: serviceCall.request, response: urlResponse)
                 var httpErrorCode = NSURLErrorUnknown
